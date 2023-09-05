@@ -221,9 +221,9 @@ input[type=radio]:checked + .radio-text::before {
   transform: translate(-50%, -50%) rotate(-45deg);
 }
 
-.hidden {
+/* ._hidden {
   display: none;
-}
+} */
 
 /*____________ШАПКА_____________*/
 
