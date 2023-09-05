@@ -660,8 +660,8 @@ input[type=radio]:checked + .radio-text::before {
   padding-top: 16px;
 }
 
-.shop-button:hover {
-  text-decoration:none;
+.shop-button::hover {
+  text-decoration: none;
   outline: 3px solid var(--color-light);
 }
 
