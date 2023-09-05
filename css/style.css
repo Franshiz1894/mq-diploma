@@ -62,11 +62,17 @@ ul {
 }
 
 .pop-up {
+  position: relative;
   box-sizing: border-box;
   width: 380px;
   background-color: #fff;
   margin: 50px auto;
   padding: 45px 30px;
+
+}
+
+.pop-up-form {
+  position: relative;
 }
 
 .pop-up-title {
@@ -95,6 +101,7 @@ ul {
 
 
 #often {
+  appearance: none;
   display: inline-block;
   box-sizing: border-box;
   width: 100%;
@@ -104,11 +111,9 @@ ul {
   padding-right: 25px;
   border: none;
   background-color: #f4f7f6;
-
-
-
+  
   background-image: url(../sources/svg/form-arrows.svg);
-  background-size: contain;
+  background-size: 15px;
   background-repeat: no-repeat;
   background-position: right 5px center;
 
@@ -118,14 +123,44 @@ ul {
   outline: 2px solid var(--color-light);
 }
 
-.choise:not(:last-child) {
-  margin-right: 10px;
+.choice:not(:last-child) {
+  margin-right: 20px;
+}
+
+.choice {
+  position: relative;
+  margin-left: 20px;
+}
+
+.radio-check {
+  appearance: none;
+ 
+}
+
+ 
+
+.radio-text::before {
+  content: "";
+  position: absolute;
+  background-image: url(../sources/svg/form-empty-circle.svg);
+  width: 17px;
+  height: 17px;
+  top: 2px;
+  right: 30px;
+  background-size: cover;
+  cursor: pointer;
+   
+ 
+}
+
+input[type=radio]:checked + .radio-text::before {
+  background-image: url(../sources/svg/form-circle.svg);
 }
 
 #answer {
   box-sizing: border-box;
   width: 100%;
-  height: 16vh;
+  height: 14vh;
   margin: 0;
   padding: 20px 20px;
   border: none;
@@ -152,31 +187,37 @@ ul {
 
 /* __________X___________ */
 
+ 
+
 .pop-up-close {
+  position: absolute;
   background-color: transparent;
   border: none;
   padding: 0;
   cursor: pointer;
-
+  top: -30px;
+  right: 0;
+  width: 10px;
+  height: 10px;
+  z-index: 1;
 }
 
-.pop-up-close:before, .pop-up-close:after {
+ 
+.line:before, .line:after {
   position: absolute;
   width: 20px;
   height: 2px;
   content: "";
-  background-color: #cc2d2d;
+  background-color: #ffffff;
   border-radius: 5px;
-  top: 100px;
-  right: 400px;
   z-index: 3;
 }
 
-.pop-up-close:before {
+.line:before {
   transform: translate(-50%, -50%) rotate(45deg);
 }
 
-.pop-up-close:after {
+.line:after {
   transform: translate(-50%, -50%) rotate(-45deg);
 }
 
@@ -259,14 +300,19 @@ ul {
 }
 
 .trend-tags a {
-  font-size: 14px;
   font-weight: bold;
   display: flex;
+  flex-wrap: wrap;
   color: var(--color-light);
 }
 
+
 .trend-tag:first-child {
   margin-right: 18px;
+}
+
+.trend-text a {
+  color: #fff;
 }
 
 .trend-info {
@@ -425,6 +471,7 @@ ul {
 }
 
 .search-group {
+  width: 100%;
   display: flex;
   position: relative;
 }
@@ -540,8 +587,8 @@ ul {
 
 .good {
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
-  width: 100%;
   justify-content: center;
   align-items: center;
 }
@@ -549,6 +596,10 @@ ul {
 .good-name {
   font-size: var(--font-size-alt);
   margin-bottom: 15px;
+}
+
+.good-name a {
+  color: #0f0d0e;
 }
 
 .goods-picture {
@@ -564,7 +615,7 @@ ul {
   max-width: 100%;
   border: 2px solid var(--color-leitmotive);
   padding: 57px 23px 35px;
-
+  flex-grow: 1;
   z-index: 2;
 }
 
@@ -596,7 +647,7 @@ ul {
 
 .shop-button {
   width: 140px;
-  height: 48px;
+  height: 32px;
   background-size: 18px;
   background-color: var(--color-light);
   color: #fff;
@@ -605,6 +656,13 @@ ul {
   font-size: 14px;
   font-weight: 700;
   text-transform: uppercase;
+  text-align: center;
+  padding-top: 16px;
+}
+
+.shop-button:hover {
+  text-decoration:none;
+  outline: 3px solid var(--color-light);
 }
 
 /*________ПОДВАЛ_________*/
@@ -617,9 +675,7 @@ footer {
 
 }
 
-.contacts {
-  display: block;
-}
+
 
 .social {
   display: flex;
@@ -664,6 +720,12 @@ footer {
 /* ДЛЯ УСТРОЙСТВ ПОМЕНЬШЕ */
 
 @media (max-width: 1199px) {
+
+  .radio-text::before {
+    width: 25px;
+    height: 25px;
+    top: 0;
+  }
 
   .menu-list {
     display: none;
@@ -713,6 +775,8 @@ footer {
   .post-meta-data {
     margin-top: 25px;
   }
+
+ 
 }
 
 /* Мобильная */
@@ -764,7 +828,7 @@ footer {
   }
 
   .trend-card {
-    width: 100vw;
+    width: 100%;
     height: 36vh;
     min-height: 250px;
   }
@@ -800,15 +864,20 @@ footer {
     margin-bottom: 25px;
   }
 
-  .social {
-    width: 100vw;
+  .goods-picture {
+    margin-bottom: 50px;
+  }
+
+  .contacts {
+    width: 100%;
+    margin: 0 15px;
   }
 
 }
 
 @media (max-width: 640px) and (orientation: portrait) {
   .trend-card {
-    width: 100vw;
+    width: 100%;
     height: 36vh;
     min-height: 250px;
   }
@@ -816,19 +885,23 @@ footer {
 
 @media (max-width: 640px) and (orientation: landscape) {
   .trend-cards {
-    display: grid;
-    gap: 5px;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    flex-wrap: wrap;
   }
 
   .trend-card {
-    width: 50vw;
+    width: calc(50% - 2.5px);
     height: 70vh;
     min-height: 250px;
   }
 
+  .trend-card:nth-child(2n+1){
+    margin-right: 5px;
+  }
+
   .trend-info {
     padding: 20px 15px;
+    font-size: 16px;
   }
 
   .logo {
@@ -892,38 +965,49 @@ footer {
   }
 
   .goods-cards {
-    display: grid;
-    gap: 7%;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: minmax(440px max-content);
+    display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     margin-bottom: 50px;
     margin-left: 35px;
     margin-right: 35px;
   }
 
-  .good-info {
-    height: 204px;
+  .good {
+    width: calc(50% - 35px);
+    margin-bottom: 30px;
   }
 
-  .social {
-    width: 100vw;
-    margin: 50px 35px;
+  .goods-picture {
+    margin-bottom: -15px;
   }
+ 
+
+  .contacts {
+    margin: 0 auto;
+    width: 100%;
+    margin: 50px 35px;
+    
+  } 
+   
 }
 
 @media (min-width: 641px) and (max-width: 1199px) and (orientation: portrait) {
 
   .trend-cards {
-    display: grid;
-    gap: 5px;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    flex-wrap: wrap; 
+  }
+
+  .trend-card:nth-child(2n+1) {
+    margin-right: 5px;
   }
 
   .trend-card {
-    width: 50vw;
+    width: calc(50% - 2.5px);
     height: 30vw;
     min-height: 250px;
+    margin-bottom: 5px;
   }
 
   .card {
@@ -947,15 +1031,19 @@ footer {
   }
 
   .trend-cards {
-    display: grid;
-    gap: 5px;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    display: flex;
   }
 
   .trend-card {
+    width: calc(25% - 3.75px);
     height: 30vw;
     min-height: 250px;
   }
+
+  .trend-card:not(:last-child) {
+    margin-right: 5px;
+  }
+
 
   .trend-info {
     padding: 20px;
@@ -974,12 +1062,7 @@ footer {
     margin-left: 30px;
   }
 
-  .card {
-    display: flex;
-    margin-bottom: 64px;
-    width: 770px;
-    margin-right: 10px;
-  }
+    
 }
 
 
@@ -1051,13 +1134,17 @@ footer {
   }
 
   .trend-cards {
-    display: grid;
-    gap: 5px;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    display: flex;
+    flex-wrap: wrap;
   }
 
   .trend-card {
+    width: calc(25% - 3.75px);
     height: 320px;
+  }
+
+  .trend-card:not(:last-child) {
+    margin-right: 5px;
   }
 
   .trend-info {
@@ -1097,16 +1184,18 @@ footer {
     width: 88%;
   }
 
-  .good-info {
-    height: 204px;
-  }
 
   .goods-cards {
-    display: grid;
-    gap: 7%;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: minmax(440px max-content);
+    display: flex;
     justify-content: space-between;
+  }
+  
+  .good {
+    width: 33.33%;
+  }
+
+  .good:not(:last-child) {
+    margin-right: 70px;
   }
 
   .social {
